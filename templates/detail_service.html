@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <h3 class="mt-1 p-1 bg-primary text-white rounded">{{ object.square_meters }}<br/><br/>{{ object.name }}</h3>
+
+    <br/>
+    <ul class="list-group">
+        <h4 class="mt-1 p-1 bg-secondary text-white rounded">Lista pokoi:</h4>
+        {% for room in service.room_set.all %}
+            <li class="list-group-item"><a href=" {{ room.get_absolute_url }}"> {{ room.name }} </a>
+                <a href="{{ room.get_update_url }}" class="btn btn-info btn-sm">Edytuj</a>
+                <a href="{{ room.get_delete_url }}" class="btn btn-danger btn-sm">Usuń</a></li>
+        {% endfor %}
+    </ul>
+    <br/><br/>
+    <ul class="list-group">
+        <h4 class="mt-1 p-1 bg-secondary text-white rounded">Lista zestawów smart:</h4>
+        {% for smart in service.smart_set.all %}
+            <li class="list-group-item">
+                <a class="link-success nav-link" href=" {{ smart.get_absolute_url }}"> {{ smart.name }} </a>
+                <a href="{{ smart.get_update_url }}" class="btn btn-info btn-sm">Edytuj</a>
+                <a href="{{ smart.get_delete_url }}" class="btn btn-danger btn-sm">Usuń</a></li>
+        {% endfor %}
+    </ul>
+    <br/>
+    {% include 'view_list.html' with object_list=room %}
+    <a href="{% url 'service_list_view' %}" class="btn btn-success">Lista Usług</a>
+{% endblock %}
+

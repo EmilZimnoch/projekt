@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}
+    Punkty
+{% endblock %}
+
+{% block content %}
+    {% include 'view_list.html' with object_list=spot_list %}
+    <a href="{% url 'service_list_view' %}" class="btn btn-success">Lista Usług</a>
+{% endblock %}

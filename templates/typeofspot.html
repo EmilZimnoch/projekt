@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block title %}
+    Typy punktów
+{% endblock %}
+
+{% block content %}
+    {% include 'view_list.html' with object_list=typeofspot_list %}
+{% endblock %}

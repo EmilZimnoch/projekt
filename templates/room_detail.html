@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <h3 class="mt-1 p-1 bg-primary text-white rounded">{{ object.name }}<br/><br/>{{ object.service.name }}<br/>{{ object.service.square_meters }}
+    </h3>
+
+    <br/>
+    <ul class="list-group">
+        <h4 class="mt-1 p-1 bg-secondary text-white rounded">Lista punktów:</h4>
+        {% for spot in room.spot_set.all %}
+            <li class="list-group-item"><a href=" {{ spot.get_absolute_url }}">{{ spot.type }}</a>
+                <a href="{{ spot.get_update_url }}" class="btn btn-info btn-sm">Edytuj</a>
+                <a href="{{ spot.get_delete_url }}" class="btn btn-danger btn-sm">Usuń</a></li>
+        {% endfor %}
+    </ul>
+    <br/><br/>
+    <a href="{{ room.get_update_url }}" class="btn btn-info btn-sm">Edytuj</a>
+    <a href="{{ room.get_delete_url }}" class="btn btn-danger btn-sm">Usuń</a>
+    {% include 'view_list.html' with object_list=spots %}
+    <a href="{% url 'service_list_view' %}" class="btn btn-success">Lista Usług</a>
+{% endblock %}

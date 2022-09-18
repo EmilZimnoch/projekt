@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block title %}
+    Usługi
+{% endblock %}
+
+{% block content %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'service_list_view' %}">Usługi</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'service_add_view' %}">Dodaj
+                            usługę</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'room_add_view' %}">Dodaj
+                            pomieszczenie</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'smart_add_view' %}">Dodaj zestaw
+                            smart</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'typeofspot_add_view' %}">Dodaj
+                            rodzaj punktu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'spot_add_view' %}">Dodaj punkt do
+                            pomieszczenia</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="">
+        <h2 class="mt-1 p-1 bg-primary text-white rounded">Usługi</h2>
+        {% include 'view_list.html' with object_list=service %}
+        <br/>
+        {% for room in service.room_set.all %}
+            {{ room }}
+        {% endfor %}
+        <br/>
+    </div>
+    <a href="{% url 'home' %}" class="btn btn-success">Powrót do strony głównej</a>
+{% endblock %}
